@@ -1,0 +1,36 @@
+#!/usr/bin/expect -f
+
+# expect ssh script, modified from http://bash.cyberciti.biz/security/expect-ssh-login-script/
+
+# S. Evan Staton, 9/11/12
+
+# Set default values
+#set timeout -1
+
+# Connect to zcluster
+spawn ssh statonse@zcluster.rcc.uga.edu
+match_max 100000
+
+# Look for passwod prompt
+expect "*Please press Enter or Return to continue*"
+
+# Confirm
+send -- "\r"
+
+# Look for account options
+expect "*Enter one (only one) of the project numbers from the list above, (e.g. 1):*"
+
+# Select account
+send -- "2\r"
+
+# Look for option confirmation
+expect "*Is this what you want? (y/n):*"
+
+# Confirm selection
+send -- "y\r"
+
+send -- "qlogin\r"
+
+interact
+
+#expect eof
