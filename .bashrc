@@ -1,5 +1,4 @@
-# My .bashrc for my desktop machine at work (Fedora 17)
-# SES 2/8/13
+# .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -7,7 +6,10 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # perlbrew
-source ~/perl5/perlbrew/etc/bashrc                     
+source ~/perl5/perlbrew/etc/bashrc
+
+# pythonpath
+export PYTHONPATH=/usr/local/bioinfo/screed/screed/build/lib:/usr/local/bioinfo/khmer/khmer/python
 
 #
 # locally installed bioinfo apps
@@ -49,11 +51,14 @@ export PATH=$PATH:/usr/local/bioinfo/seqtk/latest
 export PATH=$PATH:/usr/local/bioinfo/bowtie/latest                # Bowtie-0.12.8
 export PATH=$PATH:/usr/local/bioinfo/bowtie2/latest               # Bowtie2-2.0.0-beta7
 export PATH=$PATH:/usr/local/bioinfo/facs/latest                  # FACS-0.1
+export PATH=$PATH:/usr/local/bioinfo/cutadapt/latest              # cutadapt-1.2.1
+export PATH=$PATH:/usr/local/bioinfo/trim_galore/latest           # trim_galore-0.2.7
+export PATH=$PATH:/usr/local/bioinfo/jellyfish/latest             # jellyfish-1.6.1
+export PATH=$PATH:/usr/loal/bioinfo/khmer/khmer/scripts           # khmer-beta
 
 #
 # convenience methods for commonly used programs
 #
 alias run_sate='python /usr/local/bioinfo/sate/latest/run_sate.py'            # sate-2.2.4
-alias cutadapt='python /usr/local/bioinfo/cutadapt/cutadapt-1.1/bin/cutadapt' # cutadapt-1.1
 alias prinseq='perl /usr/local/bioinfo/prinseq/latest/prinseq-lite.pl'
 alias modeltest='java -jar /usr/local/bioinfo/jmodeltest/jmodeltest-2.1.1/jModelTest.jar' # jModelTest 2.1.1 
