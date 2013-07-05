@@ -1,0 +1,162 @@
+#-----------------------------------------------------------+
+#                                                           |
+# Evan's BASH config file                                   |
+# on the GACRCC machines                                    |
+#                                                           |
+# Modified from something Jaime had                         |
+###                                                           |
+# #STARTED: 06/22/2007                                      |
+# #UPDATED: 01/26/2008                                      |
+# UPDATED: 7/11/2012 #SES                                   |
+#-----------------------------------------------------------+
+
+#-----------------------------+
+# LS IN COLOR                 |
+#-----------------------------+
+#alias ls="ls --color";
+#CLICOLOR="YES";    export CLICOLOR
+#LSCOLORS="ExGxFxdxCxDxDxhbadExEx";    export LSCOLORS
+
+#export PS1='\[\e[0;35m\]\h\[\e[0;33m\] \W\[\e[0m\]$ '
+export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \W\[\033[0m\]$ ' # added double quotes, changed 00m to 0m 7.10.12
+#export PS1='\[\e[0;35m\]\h\[\e[0;33m\] \W\[\e[0m\]$ '
+#export PS1='\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]$ '
+#-----------------------------+
+# SET Editor to emacs         |
+#-----------------------------+
+#export EDITOR=pico
+
+# libs for gcc-4.5.1 # try it on ubuntu
+#export PATH=$PATH:$HOME/apps/lib/mpfr-3.0.0
+
+#-----------------------------------------------------------+
+# LOCAL APPS AND SCRIPTS                                    |
+#-----------------------------------------------------------+
+# Could dump all of these in bin, but this makes it a bit easier
+# to modify later
+#export PATH=$PATH:$HOME/apps/mcl/bin                            # mcl not installed in homedir on rcluster        
+#export PATH=$PATH:$HOME/apps/RepeatMasker-v3.1.6/RepeatMasker
+#export PATH=$PATH:$HOME/apps/dawgpaws/scripts
+export PATH=$PATH:$HOME/apps/bin                                 # Now the location of SolexaQA.pl and matrix2png 
+#export PATH=$PATH:$HOME/apps/vmatch                             # this is way too old
+#export PATH=$PATH:$HOME/apps/fasta
+#export PATH=$PATH:$HOME/apps/dialign/
+#export PATH=$PATH:$HOME/apps/ltr_seq
+#export PATH=$PATH:$HOME/apps/te_nest                            # it's there, just zipped up until needed
+#export PATH=$PATH:$HOME/apps/apcluster
+#export PATH=$PATH:$HOME/apps/repminer/trunk/scripts
+#export PATH=$PATH:$HOME/apps/genometools-1.4.1                  # need to use an alias
+#export PATH=$PATH:$HOME/ePerl                                    # my Perl scripts
+#export PATH=$PATH:$HOME/ePerl/external                           # commonly used external Perl scripts
+#export PATH=$PATH:$HOME/apps/ReAS_2.02/bin                      # could never get this to work 
+export PATH=$PATH:$HOME/apps/cdbfasta                            # not on the zcluster
+export PATH=$PATH:$HOME/apps/lh3-seqtk-771d60b                   # seqtk
+export PATH=$PATH:$HOME/apps/cutadapt-1.1/build/scripts-2.7      # cutadapt
+export PATH=$PATH:$HOME/apps/bin/parallel-20121122/bin
+#export PATH=/usr/local/cuda/bin:$PATH                           # for compiling GPU code
+#export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH   # for compiling GPU code
+
+#ngs_backbone
+#export PATH=$HOME/apps/ngs_backbone-1.0.0/build/scripts-2.6      # now installed centrally on the rcluster
+# using /usr/local/Python-2.6.2/bin
+
+alias raxml='/usr/local/raxml/latest/raxmlHPC-PTHREADS-SSE3'
+#alias pal2nal='/iob_home/jmblab/statonse/apps/pal2nal.v14/pal2nal'
+export PATH=$PATH:$HOME/apps/pal2nal.v14
+#-----------------------------+
+# pbzip2                      |
+#-----------------------------+
+export PATH=$PATH:$HOME/apps/pbzip2-1.1.6
+
+#-----------------------------+
+# Vmatch                      |
+#-----------------------------+
+export PATH=$PATH:/usr/local/vmatch/latest
+
+#-----------------------------+
+# TANDEM REPEATS FINDER       |
+#-----------------------------+
+#alias trf='trf404.linux64.exe'                        # RepeatScout filter-stage-2.prl uses ENV var 'trf'
+alias trf='trf400.linuxAMD64.exe'
+export TRF_COMMAND=$HOME/apps/bin/trf400.linuxAMD64.exe
+
+#-----------------------------+
+# TGICL                       |  
+#-----------------------------+
+export PATH=$PATH:$HOME/apps/gicl
+
+#-----------------------------+
+# KMER                        |
+#-----------------------------+
+
+#export PATH=$PATH:$HOME/apps/kmer/trunk/Linux-amd64/bin
+export PATH=$PATH:$HOME/apps/kmer-latest/trunk/meryl/
+
+#-----------------------------+
+# DIALIGN VARS                |
+#-----------------------------+
+export DIALIGN2_DIR=$HOME/apps/dialign/
+
+#-----------------------------+
+# MATRIX2PNG                  |
+#-----------------------------+
+# Needed for SolexaQA.pl                              # unnecessary
+#export PATH=$PATH:$HOME/apps/bin/bin
+
+#-----------------------------+
+# Gap Resolution              |
+#-----------------------------+
+
+#export PATH=$PATH:$HOME/apps/gapResolution-release-version-1_2_1/bin           # not working with paired 454 reads now
+
+#-----------------------------+
+# VELVET                      |
+#-----------------------------+
+alias velveth='$HOME/apps/velvet_1.1.05/velveth'
+alias velvetg='$HOME/apps/velvet_1.1.05/velvetg'
+
+#-----------------------------+
+# genome tools                |
+#-----------------------------+
+alias gt='$HOME/apps/genometools-1.4.1/bin/gt'
+
+#-----------------------------------------------------------+
+# DAWG-PAWS VARS                                            |
+#-----------------------------------------------------------+
+# All of the following are related to the DAWG-PAWS Program
+# find_ltr
+export FIND_LTR_ROOT='$HOME/apps/LTRDeNovo/LTR/tool/'
+
+#-----------------------------+
+# LTR FINDER                  |
+#-----------------------------+ 
+# ltr_finder binary
+export LTR_FINDER='$HOME/apps/ltr_finder/ltr_finder'
+
+# ltr_finder prosite directory
+export PROSITE_DIR='$HOME/apps/ltr_finder/ps_scan/'
+
+# ltr_finder trna db to use
+export TRNA_DB='$HOME/apps/ltr_finder/tRNAdb/Os-tRNAs.fa'
+
+#-----------------------------+
+# PERL MODULES                |
+#-----------------------------+
+# ADDED FOR PERL MODULES NOT INSTALLED BY RCC
+# Modules placed in this directory will be available to your
+# This includes BioPerl Live and the Test Module
+export PERL5LIB="$HOME/apps/perlmod"                             
+
+#-----------------------------+
+# Biopieces                   |
+#-----------------------------+
+#export BP_DIR="$HOME/apps/biopieces"  # Directory where biopieces are installed
+#export BP_DATA="$BP_DIR/BP_DATA"   # Contains genomic data etc.
+#export BP_TMP="$BP_DIR/tmp"        # Required temporary directory.
+#export BP_LOG="$BP_DIR/BP_LOG"     # Required log directory.
+
+#if [ -f "$BP_DIR/bp_conf/bashrc" ]; then
+#    source "$BP_DIR/bp_conf/bashrc"
+#fi  
+
+# END
