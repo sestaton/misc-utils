@@ -5,6 +5,15 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+#
+# command line utils
+export PATH=$PATH:/usr/local/bioinfo/filo/latest
+alias stats='/usr/local/bioinfo/filo/latest/stats'                # there is a 'stats' program in AMOS for computing assembly stats
+
+#
+# library paths to load
+export LD_LIBRARY_PATH=/usr/local/bioinfo/sra/sra_sdk-2.3.2-4/linux/gcc/dyn/x86_64/dbg/lib     # for the NCBI sra-toolkit
+
 # perlbrew
 source ~/perl5/perlbrew/etc/bashrc
 
@@ -38,7 +47,7 @@ export PATH=$PATH:/usr/local/bioinfo/paup                         # PAUP-4.0b10,
 export PATH=$PATH:/usr/local/bioinfo/vcftools/latest              # Vcftools-0.1.9.1
 export PATH=$PATH:/usr/local/bioinfo/exonerate/latest             # Exonerate-2.2.0
 export PATH=$PATH:/usr/local/bioinfo/blat/latest                  # BLAT-v35
-export PATH=$PATH:/usr/local/bioinfo/hmmer/latest                 # HMMER 3
+export PATH=$PATH:/usr/local/bioinfo/hmmer/latest                 # HMMER 3.1b, updated 7-13-13
 export PATH=$PATH:/usr/local/bioinfo/bioawk/latest                # bioawk-20110810, link is "bioawk"
 export PATH=$PATH:/usr/local/bioinfo/minia/latest
 export PATH=$PATH:/usr/local/bioinfo/pagan/latest                 # Pagan-0.47
@@ -55,6 +64,9 @@ export PATH=$PATH:/usr/local/bioinfo/cutadapt/latest              # cutadapt-1.2
 export PATH=$PATH:/usr/local/bioinfo/trim_galore/latest           # trim_galore-0.2.7
 export PATH=$PATH:/usr/local/bioinfo/jellyfish/latest             # jellyfish-1.6.1
 export PATH=$PATH:/usr/loal/bioinfo/khmer/khmer/scripts           # khmer-beta
+#export PATH=$PATH:/usr/local/bioinfo/sra/latest                   # sra-sdk 2.3.2-4 # something not right with lib paths
+export PATH=$PATH:/usr/local/bioinfo/pagan-msa/latest             # PAGAN v0.47
+export PATH=$PATH:/usr/local/bioinfo/gicl/mgblast                 # mgblast-2.2.14; it's not clear this if this is being developed any more
 
 #
 # convenience methods for commonly used programs
