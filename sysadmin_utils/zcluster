@@ -18,18 +18,18 @@ expect "*Please press Enter or Return to continue*"
 send -- "\r"
 
 # Look for account options
-expect "*Enter one (only one) of the project numbers from the list above, (e.g. 1):*"
+#expect "*Enter one (only one) of the project numbers from the list above, (e.g. 1):*"
 
 # Select account
-send -- "2\r"
+#send -- "2\r"
 
 # Look for option confirmation
-expect "*Is this what you want? (y/n):*"
+#expect "*Is this what you want? (y/n):*"
 
 # Confirm selection
-send -- "y\r"
+#send -- "y\r"
 
-send -- "qlogin\r"
+send -- "qlogin -pe parallel 2\r"
 
 interact
 
