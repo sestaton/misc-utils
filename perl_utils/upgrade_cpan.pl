@@ -1,10 +1,14 @@
-#!/usr/bin/perl
-# Usage: upgrade-cpan.pl 5.14.0 | sort -u | cpanm
+#!/usr/bin/env perl
+
+## Modified from: https://gist.github.com/miyagawa/2760426
+
 use strict;
+use warnings;
 use File::Find::Rule;
 use JSON;
- 
-my $old = shift;
+
+my $usage = "USAGE: upgrade-cpan.pl 5.14.2 | sort -u | cpanm\n";
+my $old   = shift or die $usage;
  
 my @files = File::Find::Rule->file->name('install.json')->in("$ENV{HOME}/perl5/perlbrew/perls/perl-$old/lib/site_perl/$old");
 for my $file (@files) {
