@@ -1,4 +1,7 @@
-# .bashrc
+# This is a .bashrc for my work machine 
+# (this configuration is for bioinformatics-related tasks)
+#
+# Author: S. Evan Staton
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -8,7 +11,8 @@ fi
 #
 # command line utils
 export PATH=$PATH:/usr/local/bioinfo/filo/latest
-alias stats='/usr/local/bioinfo/filo/latest/stats'                # there is a 'stats' program in AMOS for computing assembly stats
+alias stats='/usr/local/bioinfo/filo/latest/stats'                # NB: there is a 'stats' program in AMOS for computing assembly stats
+                                                                  #     there is also a 'stats' program with the RSA-tools package
 
 #
 # library paths to load
@@ -63,7 +67,7 @@ export PATH=$PATH:/usr/local/bioinfo/facs/latest                  # FACS-0.1
 export PATH=$PATH:/usr/local/bioinfo/cutadapt/latest              # cutadapt-1.2.1
 export PATH=$PATH:/usr/local/bioinfo/trim_galore/latest           # trim_galore-0.2.7
 export PATH=$PATH:/usr/local/bioinfo/jellyfish/latest             # jellyfish-1.6.1
-export PATH=$PATH:/usr/loal/bioinfo/khmer/khmer/scripts           # khmer-beta
+export PATH=$PATH:/usr/local/bioinfo/khmer/khmer/scripts           # khmer-beta
 #export PATH=$PATH:/usr/local/bioinfo/sra/latest                   # sra-sdk 2.3.2-4 # something not right with lib paths
 export PATH=$PATH:/usr/local/bioinfo/pagan-msa/latest             # PAGAN v0.47
 export PATH=$PATH:/usr/local/bioinfo/gicl/mgblast                 # mgblast-2.2.14; it's not clear this if this is being developed any more
