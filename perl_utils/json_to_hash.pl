@@ -14,11 +14,10 @@ my $infile = shift or die $usage;
 my $json_text;
 {
     local $/;
-    open(my $in, '<', $infile);
+    open my $in, '<', $infile;
     $json_text = <$in>;
-    close($in);
+    close $in;
 }
 
-#my $json = JSON->new->utf8->space_after->decode($infile);
 my $json = JSON->new->utf8->decode($json_text);
 dd $json;
