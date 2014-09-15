@@ -13,7 +13,7 @@ my $file2 = shift or die $usage;
 my $hash1 = file_to_hash($file1);
 my $hash2 = file_to_hash($file2);
 
-is_deeply($hash1, $hash2, 'Both hashs contain the same keys and values');
+is_deeply($hash1, $hash2, 'Hashes are the same, they contain the same keys and values');
 
 # methods
 sub file_to_hash {
