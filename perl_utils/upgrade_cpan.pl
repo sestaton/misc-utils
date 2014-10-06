@@ -4,7 +4,6 @@
 
 use strict;
 use warnings;
-use JSON;
 
 my $usage = "USAGE: upgrade-cpan.pl 5.14.2 | sort -u | cpanm\n";
 my $old   = shift or die $usage;
