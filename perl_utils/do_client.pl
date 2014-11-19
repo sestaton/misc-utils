@@ -1,5 +1,9 @@
 #!/usr/bin/env perl
 
+#NB: this only works with DigitalOcean API version 1, and you must
+#    have ssh keys set up.
+#TODO: add better logging/timing
+
 use 5.010;
 use strict;
 use warnings;
