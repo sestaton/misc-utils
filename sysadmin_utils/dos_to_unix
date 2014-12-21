@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##NB: this is particularly useful for converting Excel text files
+##    to something that can be easily parsed.
+
 function usage() {
 cat <<EOF
 
