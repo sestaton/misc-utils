@@ -1,0 +1,34 @@
+#!/bin/bash
+
+##NB: this is particularly useful for converting Excel text files
+##    to something that can be easily parsed.
+
+function usage() {
+cat <<EOF
+
+USAGE: $0 <dosfile> <unixfile>>
+
+dosfile:   A file with DOS newlines.
+unixfile:  The name of an output file with unix newlines.
+
+EOF
+}
+
+function print_error() {
+cat <<ERR
+
+ERROR: Command line not parsed correctly. Check input.
+
+ERR
+}
+
+if [ $# -lt 2 ]; then
+   print_error
+   usage
+   exit 1
+fi
+
+dosfile=$1
+unixfile=$2
+
+tr '\r' '\n' < $dosfile > $unixfile
