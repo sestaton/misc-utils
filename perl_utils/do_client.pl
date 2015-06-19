@@ -26,11 +26,13 @@ GetOptions(\%opt, 'size|s=i',
 	   'destroy',
 	   'login|l');
 
+usage() and exit(1) unless %opt;
+
 $opt{configfile} //= File::Spec->catfile($ENV{HOME}, ".digitalocean");
-$opt{region} //= 3;        # San Francisco
-$opt{size}   //= '512MB';
-$opt{name}   //= create_uuid_as_string(UUID_V1);
-$opt{image}  //= 11836690; # Ubuntu 14.04 x64
+#$opt{region} //= 3;        # San Francisco
+#$opt{size}   //= '512MB';
+#$opt{name}   //= create_uuid_as_string(UUID_V1);
+#$opt{image}  //= 11836690; # Ubuntu 14.04 x64
 
 my $config = Config::Tiny->read( $opt{configfile}, 'utf8' );
 my $do_obj = DigitalOcean->new(%{ $config->{doauth} });
@@ -38,11 +40,11 @@ my $do_obj = DigitalOcean->new(%{ $config->{doauth} });
 #my ($region_id, $size_specs);
 if ($opt{available}) {
     if ($opt{available} =~ /sizes/i) {
-	my $size_specs = get_sizes($do_obj, $opt{size});
+	my $size_specs = get_sizes($do_obj);
 	dd $size_specs and exit;
     }
     elsif ($opt{available} =~ /images/i) {
-	my $image_specs  = get_images($do_obj, $opt{dist});
+	my $image_specs  = get_images($do_obj);
 	dd $image_specs and exit;
     }
     elsif ($opt{available} =~ /regions/i) {
@@ -62,11 +64,14 @@ if ($opt{droplets}) {
 }
 
 my $ssh_id = get_keys($do_obj);
+$opt{region} //= 3;        # San Francisco
+$opt{size}   //= '512MB';
+$opt{name}   //= create_uuid_as_string(UUID_V1);
+$opt{image}  //= 11836690; # Ubuntu 14.04 x64
 
 my $t0 = time;
 my $droplet = $do_obj->create_droplet(
     name          => $opt{name},
-    #size_id       => $size_specs->{$opt{size}}{id},
     size_id       => $opt{size},
     image_id      => $opt{image},
     region_id     => $opt{region},
@@ -105,20 +110,20 @@ if ($opt{destroy}) {
 # methods
 #
 sub get_sizes {
-    my ($do_obj, $size) = @_;
+    my ($do_obj) = @_;
     
-    $size = uc($size);
-    my $size_id;
+    #$size = uc($size);
+    #my $size_id;
     my $sizes = $do_obj->sizes;
     my %size_specs;
     for my $s (@$sizes) {
-	if ($size eq $s->name) {
+	#if ($size eq $s->name) {
 	    $size_specs{ $s->name }{id}   = $s->id;
 	    $size_specs{ $s->name }{disk} = $s->{disk};
 	    $size_specs{ $s->name }{cpu}  = $s->{cpu};
 	    $size_specs{ $s->name }{cost_per_month} = $s->{cost_per_month};
 	    $size_specs{ $s->name }{cost_per_hour}  = $s->{cost_per_hour};
-	}
+	#}
     }
     return \%size_specs;
 }
@@ -139,7 +144,7 @@ sub get_regions {
 }
 
 sub get_images {
-    my ($do_obj, $dist) = @_;
+    my ($do_obj) = @_;
     
     my $image_id;
     my $images = $do_obj->images;
@@ -179,13 +184,25 @@ sub get_droplets {
 sub usage {
     my $script = basename($0);
   print STDERR <<END
-USAGE: $script -i s_1_sequence.fasta -o s_1_sequence_100k.fasta -n 100000 
+
+USAGE: $script --available
+
 Required:
-    -i|infile   :    FastA/Q file of reads/contigs.
-    -n|num      :    The number of reads to select.
-    -o|outfile  :    The file to place the selected reads.
+
+
 Options:
-    -h|help     :    Print usage statement.
-    -m|man      :    Print full documentation.
+    -s|size          :    The size ID requested for creating a new Droplet.
+    -r|region        :    The region ID requested for creating a new Droplet.
+    -n|name          :    The name for the instance (Default: a UUID string).
+    -id|image        :    The image ID requested for creating a new Droplet.
+    -c|configfile    :    The DigitalOcean configuration file.
+    -a|available     :    Given an argument of either 'size', 'regions', or 'images', print
+                          all of the available options for that choice.
+    -l|login         :    If given with other options, will log on to the created Droplet.
+    --droplets       :    Print all running Droplets.
+    --destroy        :    Given an image ID, this option will destroy the Droplet.
+    -h|help          :    Print usage statement.
+    -m|man           :    Print full documentation.
+
 END
 }
