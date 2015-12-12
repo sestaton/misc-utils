@@ -13,7 +13,6 @@ my $rootdir = shift;
 
 find( sub { push @{$files{$_}}, $File::Find::name if -f }, $rootdir );
 find( sub { push @{$sizes{$_}}, -s if -f }, $rootdir );
-my %stat = reverse %sizes;
 
 for my $file (keys %files) {
     next if $file eq '.';
