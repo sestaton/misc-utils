@@ -41,8 +41,8 @@ for my $dup (reverse sort { $a <=> $b } keys %dups) {
 }
 
 my $len = max(@buffer);
-say "=" x ($len/5);
-my $buf = $len - 9;
+say "=" x ($len/3);
+my $buf = ($len/3) - 9;
 printf "%-${buf}s %10s\n", "Total", $format->format_bytes($total);
 
 sub all_the_same {
