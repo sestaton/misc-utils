@@ -9,7 +9,8 @@ use List::Util qw(max);
 
 my (%files, %sizes, %dups, %seen);
 
-my $rootdir = shift;
+my $usage   = basename($0).' topdir';
+my $rootdir = shift or die $usage;
 
 find( sub { push @{$files{$_}}, $File::Find::name if -f }, $rootdir );
 find( sub { push @{$sizes{$_}}, -s if -f }, $rootdir );
@@ -40,7 +41,7 @@ for my $dup (reverse sort { $a <=> $b } keys %dups) {
 }
 
 my $len = max(@buffer);
-say "=" x ($len+2);
+say "=" x ($len/5);
 my $buf = $len - 9;
 printf "%-${buf}s %10s\n", "Total", $format->format_bytes($total);
 
