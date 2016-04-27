@@ -9,7 +9,7 @@ use List::Util qw(max);
 
 my (%files, %sizes, %dups, %seen);
 
-my $usage   = basename($0).' topdir';
+my $usage   = basename($0).' rootdir';
 my $rootdir = shift or die $usage;
 
 find( sub { push @{$files{$_}}, $File::Find::name if -f }, $rootdir );
