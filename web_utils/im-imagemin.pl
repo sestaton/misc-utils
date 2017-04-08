@@ -10,7 +10,6 @@ use File::Spec;
 use File::Basename;
 use File::Path qw(make_path);
 use Cwd        qw(abs_path);
-#use Data::Dump::Color;
 use Getopt::Long;
 
 my $usage = "\nUSAGE: ".basename($0)." -i <indir> -o <outdir>\n";
@@ -38,7 +37,6 @@ else {
 
 my @files;
 find(sub { push @files, $File::Find::name if -f and /\.jpg$|\.png|\.gif$/ }, abs_path($opts{indir}));
-#dd \@files and exit;
 
 $opts{indir} = abs_path($opts{indir});
 
@@ -48,11 +46,11 @@ for my $in (@files) {
 
     my $outpath;
     if ($dir ne '') {
-	     my @dirs = split /\// , $dir;
-	      $outpath = File::Spec->catdir(abs_path($opts{outdir}), @dirs);
+	my @dirs = split /\// , $dir;
+	$outpath = File::Spec->catdir(abs_path($opts{outdir}), @dirs);
     }
     else {
-	     $outpath = $opts{outdir};
+	$outpath = $opts{outdir};
     }
 
     make_path($outpath, {verbose => 0, mode => 0771,})
