@@ -2,22 +2,19 @@ use 5.010;
 use strict;
 use warnings;
 use autodie;
-#use File::Find;
 use File::Find::Rule;
 use File::Basename;
 use Number::Format;
 use Sort::Naturally;
-use Data::Dump::Color;
-
-my (%files, %sizes, %dups, %seen);
+#use Data::Dump::Color;
 
 my $usage   = basename($0).' rootdir name';
 my $rootdir = shift or die $usage;
 my $name    = shift or die $usage;
 
-my $buckets = split_fs_into_buckets($rootdir, $name);
+my $buckets = split_fs_into_buckets($rootdir);
 #dd $buckets and exit;
-summarize_buckets($buckets);
+summarize_buckets($buckets, $name);
 
 exit;
 #
