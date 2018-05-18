@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sort $1 | uniq -c | sed 's/^ *//' | perl -lne 'print join "\t", $1, $2 if /^(\d+)\s+(.*)/' | sort -nrk1,1
